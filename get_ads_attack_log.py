@@ -35,7 +35,7 @@ def find_attack_log():
 
         # 已有表格，追加数据
         wb = op.load_workbook('ads.xlsx')
-        ws = wb['Sheet']
+        ws = wb['Sheet1']
 
         # 在每段日期和日志中检索跟目的ip有关的日志,并写入
         for i in range(len(time_fragment)):
