@@ -3,14 +3,13 @@ import os
 import openpyxl as op
 
 
-def find_attack_log():
-    # 当前路径
-    path = os.getcwd()
+def find_attack_log(file):
+
     # 定义返回值
     dict_list = []
 
     # 打开日志
-    with open(r'{}\attackinfo (6).log'.format(path), 'r', encoding='UTF-8') as f:
+    with open(file, 'r', encoding='UTF-8') as f:
         # 编码方式根据文本类型不同选择UTF-8或者GB18030等等，可以通过notepad对文件进行重编码
         # 筛选时间
         log = f.read()
@@ -57,5 +56,17 @@ def find_attack_log():
         wb.save('ads.xlsx')
 
 
+def get_log_file():
+    # 当前路径
+    path = os.getcwd()
+    file_list= []
+    for x in os.listdir():
+        if re.search('.log$', x):
+            file_list.append(x)
+    return file_list
+
+
 if __name__ == '__main__':
-    find_attack_log()
+    log = get_log_file()
+    for i in log:
+        find_attack_log(i)
